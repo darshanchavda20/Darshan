@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KickOff - Football Sports Website</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    /* -----------------------------
+       Global styles and resets
+       ----------------------------- */
+    :root{
+      --brand:#0d6efd;
+      --dark:#0b1422;
+      --muted:#6c757d;
+      --accent:#ffb703;
+    }
+    html,body{height:100%;}
+    body{
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+      color:var(--dark);
+    }
+
+    /* Navbar */
+    .navbar-brand{font-weight:700; letter-spacing:1px}
+    .hero{
+      background: url('https://picsum.photos/seed/football/1400/600') center/cover no-repeat;
+      min-height:520px; display:flex; align-items:center; color:white; position:relative;
+    }
+    .hero::after{content:''; position:absolute; inset:0; background: linear-gradient(180deg, rgba(11,20,34,0.65), rgba(11,20,34,0.35));}
+    .hero .container{position:relative; z-index:2}
+
+    /* Cards */
+    .team-card img{height:160px; object-fit:cover}
+    .player-card img{height:200px; object-fit:cover}
+
+    /* Fixtures table */
+    .fixture-card{border-radius:12px; box-shadow:0 6px 24px rgba(10,20,40,0.06);}
+
+    /* Stats */
+    .stat{background:linear-gradient(180deg, #fff, #f7fbff); padding:18px; border-radius:10px}
+
+    /* Footer */
+    footer{background:#071127; color:#cfe7ff}
+    footer a{color:#dff3ff}
+
+    /* Responsiveness tweaks */
+    @media (max-width:767px){
+      .hero{min-height:420px}
+      .player-card img{height:160px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <i class="bi bi-shield-fill-check me-2" style="font-size:1.2rem;color:var(--brand)"></i>
+      <span>KickOff</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#fixtures">Fixtures</a></li>
+        <li class="nav-item"><a class="nav-link" href="#teams">Teams</a></li>
+        <li class="nav-item"><a class="nav-link" href="#players">Players</a></li>
+        <li class="nav-item"><a class="nav-link" href="#news">News</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+      <div class="d-flex ms-3">
+        <button class="btn btn-outline-primary me-2">Sign in</button>
+        <button class="btn btn-primary">Get Tickets</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero mb-5">
+  <div class="container text-white">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <h1 class="display-5 fw-bold">Feel the roar — football action, live updates & more</h1>
+        <p class="lead">Fixtures, results, player stats and the latest news from leagues around the world.</p>
+        <div class="d-flex gap-2">
+          <a href="#fixtures" class="btn btn-primary btn-lg">See Fixtures</a>
+          <a href="#news" class="btn btn-outline-light btn-lg">Latest News</a>
+        </div>
+      </div>
+      <div class="col-lg-5 d-none d-lg-block">
+        <!-- quick stats card -->
+        <div class="card bg-transparent border-0 text-white">
+          <div class="card-body p-0 mt-4">
+            <div class="row g-3">
+              <div class="col-6">
+                <div class="stat text-center p-3">
+                  <h3 class="mb-0">24</h3>
+                  <small>Matches Today</small>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="stat text-center p-3">
+                  <h3 class="mb-0">8</h3>
+                  <small>Live Streams</small>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="stat text-center p-3">
+                  <h3 class="mb-0">12K</h3>
+                  <small>Active Fans</small>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="stat text-center p-3">
+                  <h3 class="mb-0">183</h3>
+                  <small>Goals Today</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <!-- FIXTURES & RESULTS -->
+  <section id="fixtures" class="mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="h4">Today's Fixtures</h2>
+      <div>
+        <button class="btn btn-outline-secondary btn-sm">Week</button>
+        <button class="btn btn-outline-secondary btn-sm">Month</button>
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <!-- fixture list -->
+      <div class="col-lg-8">
+        <div class="card fixture-card p-3 mb-3">
+          <div class="row align-items-center">
+            <div class="col-md-3 text-center">
+              <img src="https://picsum.photos/seed/team1/120/80" class="rounded mb-2" alt="team">
+              <div class="fw-bold">Blue United</div>
+            </div>
+            <div class="col-md-6 text-center">
+              <h5 class="mb-0">2 : 1</h5>
+              <small class="d-block text-muted">Full Time — Stamford Arena</small>
+              <div class="mt-2 small">Highlights: 45' — Goal by A. Silva, 73' — Penalty saved</div>
+            </div>
+            <div class="col-md-3 text-center">
+              <img src="https://picsum.photos/seed/team2/120/80" class="rounded mb-2" alt="team">
+              <div class="fw-bold">Red Rovers</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- multiple fixtures to mimic longer list -->
+        <div class="card fixture-card p-3 mb-3">
+          <div class="row align-items-center">
+            <div class="col-md-3 text-center">
+              <img src="https://picsum.photos/seed/team3/120/80" class="rounded mb-2" alt="team">
+              <div class="fw-bold">City Stars</div>
+            </div>
+            <div class="col-md-6 text-center">
+              <h5 class="mb-0">1 : 1</h5>
+              <small class="d-block text-muted">HT — Riverside Ground</small>
+              <div class="mt-2 small">Goals: 12' — S. Mendez, 38' — O. Clarke</div>
+            </div>
+            <div class="col-md-3 text-center">
+              <img src="https://picsum.photos/seed/team4/120/80" class="rounded mb-2" alt="team">
+              <div class="fw-bold">Coastal FC</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card fixture-card p-3 mb-3">
+          <div class="row align-items-center">
+            <div class="col-md-3 text-center">
+              <img src="https://picsum.photos/seed/team5/120/80" class="rounded mb-2" alt="team">
+              <div class="fw-bold">Harbor Kings</div>
+            </div>
+            <div class="col-md-6 text-center">
+              <h5 class="mb-0">3 : 0</h5>
+              <small class="d-block text-muted">FT — Central Stadium</small>
+              <div class="mt-2 small">Clean sheet & hat-trick by L. Martins</div>
+            </div>
+            <div class="col-md-3 text-center">
+              <img src="https://picsum.photos/seed/team6/120/80" class="rounded mb-2" alt="team">
+              <div class="fw-bold">Vale United</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- sidebar: league table & top scorers -->
+      <aside class="col-lg-4">
+        <div class="card mb-3 p-3">
+          <h6 class="mb-2">League Table</h6>
+          <table class="table table-sm mb-0">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Team</th>
+                <th>Pts</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Blue United</td><td>42</td></tr>
+              <tr><td>2</td><td>Harbor Kings</td><td>39</td></tr>
+              <tr><td>3</td><td>City Stars</td><td>36</td></tr>
+              <tr><td>4</td><td>Coastal FC</td><td>33</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card p-3 mb-3">
+          <h6 class="mb-2">Top Scorers</h6>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center">L. Martins<span class="badge bg-primary rounded-pill">18</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">A. Silva<span class="badge bg-primary rounded-pill">14</span></li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">S. Mendez<span class="badge bg-primary rounded-pill">13</span></li>
+          </ul>
+        </div>
+
+        <div class="card p-3 mb-3 text-center">
+          <h6 class="mb-2">Match of the Day</h6>
+          <img src="https://picsum.photos/seed/match/320/180" class="img-fluid rounded mb-2" alt="match">
+          <p class="small text-muted mb-0">Blue United vs Harbor Kings — Epic encounter last season</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- TEAMS SECTION -->
+  <section id="teams" class="mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="h4">Featured Teams</h2>
+      <a href="#" class="small">View all teams &raquo;</a>
+    </div>
+
+    <div class="row g-3">
+      <!-- Team card -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card team-card h-100 shadow-sm">
+          <img src="https://picsum.photos/seed/teamA/600/400" class="card-img-top" alt="team">
+          <div class="card-body">
+            <h5 class="card-title">Blue United</h5>
+            <p class="card-text small text-muted">Founded 1901 • Stadium: Stamford Arena</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <a class="btn btn-sm btn-outline-primary" href="#">Details</a>
+              <div class="small">Fans: <strong>45k</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="card team-card h-100 shadow-sm">
+          <img src="https://picsum.photos/seed/teamB/600/400" class="card-img-top" alt="team">
+          <div class="card-body">
+            <h5 class="card-title">Harbor Kings</h5>
+            <p class="card-text small text-muted">Founded 1923 • Stadium: Bay Arena</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <a class="btn btn-sm btn-outline-primary" href="#">Details</a>
+              <div class="small">Fans: <strong>39k</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="card team-card h-100 shadow-sm">
+          <img src="https://picsum.photos/seed/teamC/600/400" class="card-img-top" alt="team">
+          <div class="card-body">
+            <h5 class="card-title">Coastal FC</h5>
+            <p class="card-text small text-muted">Founded 1986 • Stadium: Shoreline Park</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <a class="btn btn-sm btn-outline-primary" href="#">Details</a>
+              <div class="small">Fans: <strong>22k</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="card team-card h-100 shadow-sm">
+          <img src="https://picsum.photos/seed/teamD/600/400" class="card-img-top" alt="team">
+          <div class="card-body">
+            <h5 class="card-title">City Stars</h5>
+            <p class="card-text small text-muted">Founded 1970 • Stadium: Metro Park</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <a class="btn btn-sm btn-outline-primary" href="#">Details</a>
+              <div class="small">Fans: <strong>30k</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PLAYERS SECTION -->
+  <section id="players" class="mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="h4">Top Players</h2>
+      <a href="#" class="small">View all players &raquo;</a>
+    </div>
+
+    <div class="row g-3">
+      <!-- player card -->
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="card player-card h-100 shadow-sm">
+          <img src="https://picsum.photos/seed/player1/600/400" class="card-img-top" alt="player">
+          <div class="card-body">
+            <h5 class="card-title mb-1">L. Martins</h5>
+            <p class="small text-muted mb-2">Forward • Harbor Kings</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="small">Goals: <strong>18</strong></div>
+              <a href="#" class="btn btn-sm btn-outline-secondary">Profile</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="card player-card h-100 shadow-sm">
+          <img src="https://picsum.photos/seed/player2/600/400" class="card-img-top" alt="player">
+          <div class="card-body">
+            <h5 class="card-title mb-1">A. Silva</h5>
+            <p class="small text-muted mb-2">Midfielder • Blue United</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="small">Assists: <strong>9</strong></div>
+              <a href="#" class="btn btn-sm btn-outline-secondary">Profile</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="card player-card h-100 shadow-sm">
+          <img src="https://picsum.photos/seed/player3/600/400" class="card-img-top" alt="player">
+          <div class="card-body">
+            <h5 class="card-title mb-1">S. Mendez</h5>
+            <p class="small text-muted mb-2">Winger • City Stars</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="small">Goals: <strong>13</strong></div>
+              <a href="#" class="btn btn-sm btn-outline-secondary">Profile</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="card player-card h-100 shadow-sm">
+          <img src="https://picsum.photos/seed/player4/600/400" class="card-img-top" alt="player">
+          <div class="card-body">
+            <h5 class="card-title mb-1">O. Clarke</h5>
+            <p class="small text-muted mb-2">Defender • Coastal FC</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="small">Interceptions: <strong>49</strong></div>
+              <a href="#" class="btn btn-sm btn-outline-secondary">Profile</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LATEST NEWS -->
+  <section id="news" class="mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="h4">Latest News</h2>
+      <a href="#" class="small">Read all news &raquo;</a>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-md-6 col-lg-4">
+        <article class="card h-100">
+          <img src="https://picsum.photos/seed/news1/800/400" class="card-img-top" alt="news">
+          <div class="card-body">
+            <h5 class="card-title">Martins seals the derby with a spectacular hat-trick</h5>
+            <p class="card-text small text-muted">Aug 15, 2025 • Match Report</p>
+            <p class="card-text">Martins lit up the stadium as Harbor Kings romped to a 3-0 win... <a href="#">read more</a></p>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <article class="card h-100">
+          <img src="https://picsum.photos/seed/news2/800/400" class="card-img-top" alt="news">
+          <div class="card-body">
+            <h5 class="card-title">Transfer window: who moves where</h5>
+            <p class="card-text small text-muted">Aug 12, 2025 • Transfers</p>
+            <p class="card-text">A busy week of deals as clubs look to strengthen. Top targets include... <a href="#">read more</a></p>
+          </div>
+        </article>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <article class="card h-100">
+          <img src="https://picsum.photos/seed/news3/800/400" class="card-img-top" alt="news">
+          <div class="card-body">
+            <h5 class="card-title">Tactics: how Blue United set up to dominate midfield</h5>
+            <p class="card-text small text-muted">Aug 10, 2025 • Analysis</p>
+            <p class="card-text">A deep dive into formation and pressing triggers that made Blue United hard to break down. <a href="#">read more</a></p>
+          </div>
+        </article>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="h4">Gallery</h2>
+      <a href="#" class="small">View all photos &raquo;</a>
+    </div>
+
+    <div class="row g-2">
+      <div class="col-6 col-sm-4 col-md-3">
+        <img src="https://picsum.photos/seed/photo1/600/400" class="img-fluid rounded" alt="photo">
+      </div>
+      <div class="col-6 col-sm-4 col-md-3">
+        <img src="https://picsum.photos/seed/photo2/600/400" class="img-fluid rounded" alt="photo">
+      </div>
+      <div class="col-6 col-sm-4 col-md-3">
+        <img src="https://picsum.photos/seed/photo3/600/400" class="img-fluid rounded" alt="photo">
+      </div>
+      <div class="col-6 col-sm-4 col-md-3">
+        <img src="https://picsum.photos/seed/photo4/600/400" class="img-fluid rounded" alt="photo">
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBSCRIBE & CONTACT -->
+  <section id="contact" class="mb-5">
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="card p-4 shadow-sm">
+          <h5>Subscribe to weekly digest</h5>
+          <p class="small text-muted">Get match previews, top moments and exclusive interviews.</p>
+          <form class="row g-2">
+            <div class="col-8">
+              <input class="form-control" type="email" placeholder="Your email" aria-label="email">
+            </div>
+            <div class="col-4">
+              <button class="btn btn-primary w-100">Subscribe</button>
+            </div>
+            <div class="col-12 mt-2">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="consent">
+                <label class="form-check-label small text-muted" for="consent">I agree to receive emails</label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card p-4 shadow-sm">
+          <h5>Contact Us</h5>
+          <p class="small text-muted">Questions, sponsorships or press inquiries.</p>
+          <form class="row g-2">
+            <div class="col-md-6">
+              <input class="form-control" placeholder="Your name">
+            </div>
+            <div class="col-md-6">
+              <input class="form-control" placeholder="Phone or email">
+            </div>
+            <div class="col-12">
+              <textarea class="form-control" rows="4" placeholder="Message"></textarea>
+            </div>
+            <div class="col-12 text-end">
+              <button class="btn btn-outline-primary">Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="mt-5 pt-5">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-md-4">
+        <h5>KickOff</h5>
+        <p class="small text-muted">Your home for live scores, news and community around the beautiful game.</p>
+        <div class="d-flex gap-2">
+          <a href="#" class="btn btn-sm btn-light">Facebook</a>
+          <a href="#" class="btn btn-sm btn-light">Twitter</a>
+          <a href="#" class="btn btn-sm btn-light">Instagram</a>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <h6>Company</h6>
+        <ul class="list-unstyled small">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2">
+        <h6>Support</h6>
+        <ul class="list-unstyled small">
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Privacy</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h6>Newsletter</h6>
+        <p class="small text-muted">Subscribe for weekly updates</p>
+        <form class="d-flex">
+          <input class="form-control form-control-sm me-2" placeholder="Email address">
+          <button class="btn btn-sm btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="border-top mt-4 pt-3 text-muted small d-flex justify-content-between">
+      <div>© 2025 KickOff. All rights reserved.</div>
+      <div>Made with <i class="bi bi-heart-fill text-danger"></i> for football fans</div>
+    </div>
+  </div>
+</footer>
+
+<!-- Bootstrap 5 JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>
