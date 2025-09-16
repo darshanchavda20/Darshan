@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // Declare variables of different data types
+        let myString = "Hello, JavaScript!";    // string
+        let myNumber = 100;                     // number
+        let myBoolean = false;                  // boolean
+        let myNull = null;                      // null
+        let myUndefined;                        // undefined (no value assigned)
+
+        // Log values and their types to the console
+        console.log("Value:", myString, "| Type:", typeof myString);
+        console.log("Value:", myNumber, "| Type:", typeof myNumber);
+        console.log("Value:", myBoolean, "| Type:", typeof myBoolean);
+        console.log("Value:", myNull, "| Type:", typeof myNull);         // typeof null = "object"
+        console.log("Value:", myUndefined, "| Type:", typeof myUndefined);
+    </script>
+
+    <script>
+
+
+        // primitive
+        var num = 1250;  // int
+        document.write("<h1>" + num + "</h1>");
+
+        var point = 12.50; // float
+        document.write("<h1>" + point + "</h1>");
+
+        var name = "kRITI Mishra"; // float
+        document.write("<h1>" + name + "</h1>");
+
+        var blank = null;
+        document.write("<h1>" + blank + "</h1>");
+
+
+        // non primitive
+
+        //Array
+        //index 0,1,2,3,4
+        var students = ["darshan", "Antima", "Kriti", "Rakesh", "Krupali"];
+        document.write("<h1>" + students + "</h1>");
+
+        document.write("<h1>" + students[4] + "</h1>");
+
+
+        // object { propery : value}
+
+        // single Object
+        var single_obj = { name: "Darshan", email: "darashan@gmail.com", pass: "1234", mobile: "12345678" };
+        document.write("<h1>" + single_obj.email + "</h1>");
+
+
+        var arr_obj = [
+            { name: "Darshan", email: "darashan@gmail.com", pass: "1234", mobile: "12345678" },
+            { name: "kriti", email: "kriti@gmail.com", pass: "1234", mobile: "12345678" },
+            { name: "Krupali", email: "Krupali@gmail.com", pass: "1234", mobile: "12345678" },
+            { name: "raj", email: "raj@gmail.com", pass: "1234", mobile: "12345678" }
+        ];
+        document.write("<h1>" + arr_obj[3].email + "</h1>");
+
+    </script>
+
+</body>
+
+</html>

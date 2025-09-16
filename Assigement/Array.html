@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fruit Array Manipulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        input, button {
+            margin: 5px 0;
+            padding: 8px;
+        }
+
+        #fruitList {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .log {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Fruit Array Operations</h2>
+
+    <!-- Input to add a fruit -->
+    <label for="fruitInput">Enter a fruit to add:</label><br>
+    <input type="text" id="fruitInput" placeholder="e.g., mango"><br>
+
+    <!-- Buttons for actions -->
+    <button onclick="addFruit()">Add Fruit to End</button>
+    <button onclick="removeFirstFruit()">Remove First Fruit</button>
+
+    <!-- Display area -->
+    <div id="fruitList"></div>
+
+    <script>
+        // Step 1: Declare the array
+        let fruits = ["apple", "banana", "cherry"];
+
+        // Display initial fruits
+        displayFruits();
+
+        // Add a fruit to the end of the array
+        function addFruit() {
+            const input = document.getElementById("fruitInput");
+            const fruit = input.value.trim();
+
+            if (fruit === "") {
+                alert("Please enter a fruit name.");
+                return;
+            }
+
+            fruits.push(fruit);  // Add fruit to the end
+            console.log("After adding:", fruits); // Log to console
+            displayFruits();     // Update display
+            input.value = "";    // Clear input
+        }
+
+        // Remove the first fruit from the array
+        function removeFirstFruit() {
+            if (fruits.length === 0) {
+                alert("The fruit array is empty.");
+                return;
+            }
+
+            fruits.shift();  // Remove first element
+            console.log("After removing first fruit:", fruits); // Log to console
+            displayFruits(); // Update display
+        }
+
+        // Function to display the array on the page
+        function displayFruits() {
+            const displayDiv = document.getElementById("fruitList");
+            displayDiv.innerHTML = "Current Fruits: " + fruits.join(", ");
+        }
+    </script>
+
+</body>
+</html>
