@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: auto;
+            /* table center page પર */
+        }
+
+        th {
+            text-align: center;
+            background-color: navy;
+            /* header background */
+            color: white;
+            /* header text color */
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        td {
+            text-align: center;
+            /* horizontal center */
+            vertical-align: middle;
+            /* vertical center */
+            background-color: lightyellow;
+            /* cell background */
+            color: darkgreen;
+            /* cell text color */
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f2f2f2;
+            /* alternate row color */
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <table border="1" id="data">
+        <tr>
+            <th>field</th>
+            <th style="width: 50%;">value</th>
+        </tr>
+    </table>
+
+    <!-- 
+    <table border='1' id="data">
+        <tr>
+            <th >feild</th>
+            <th >value</th>
+
+        </tr>
+    </table> -->
+
+    <script>
+
+        // single for in (object) mate..
+
+        fetch('https://jsonplaceholder.typicode.com/comments/2')
+            .then((response) => response.json())
+            .then((object) => {
+                //console.log(object);
+                showdata(object)
+            });
+
+
+        var mydiv = document.getElementById('data');
+
+        function showdata(object) {
+
+            for (value in object) {
+
+                var html = `<tr>
+                 <td>${value}</td>
+                <td>${object[value]}</td>
+
+				
+			</tr>`;
+
+                mydiv.insertAdjacentHTML('beforeend', html);
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

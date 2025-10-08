@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+
+
+	<form name="myForm1">
+		<input type="password" value="" name="userPass" onkeyup="byformname()">
+		Strength:<span id="myloca">no Strength</span>
+	</form>
+
+	<script type="text/javascript">
+		function byformname() {
+			var msg;
+
+			if (document.forms['myForm1']['userPass'].value.length > 5) {
+				document.getElementById('myloca').innerText = "Good";
+				document.getElementById('myloca').style.color = "green";
+			}
+		}
+	</script>
+
+	
+
+	<!-- <form name="myForm1">
+		<input type="password" value="" name="userPass" onkeyup="byformname()">
+		Strength:<span id="myloca">no strength</span>
+	</form>
+
+	<script type="text/javascript">
+		function byformname() {
+			var msg;
+			/*
+			if(document.myForm1.userPass.value.length>5) // if(document.forms["myform"]["ufn"].value>5)
+			{  
+				document.getElementById('myloca').innerText="Good";
+				document.getElementById('myloca').style.color="green";	
+			}  
+			*/
+
+			if (document.forms['myForm1']['userPass'].value.length > 5) // if(document.forms["myform"]["ufn"].value>5)
+			{
+				document.getElementById('myloca').innerText = "Good";
+				document.getElementById('myloca').style.color = "green";
+			}
+
+		}
+
+	</script> -->
+
+
+
+</body>
+
+</html>
