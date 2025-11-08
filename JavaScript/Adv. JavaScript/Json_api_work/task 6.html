@@ -69,21 +69,21 @@
 
         fetch('https://jsonplaceholder.typicode.com/comments/2')
             .then((response) => response.json())
-            .then((object) => {
+            .then((aa) => {
                 //console.log(object);
-                showdata(object)
+                showdata(aa)
             });
 
 
         var mydiv = document.getElementById('data');
 
-        function showdata(object) {
+        function showdata(aa) {
 
-            for (value in object) {
+            for (value in aa) {
 
                 var html = `<tr>
                  <td>${value}</td>
-                <td>${object[value]}</td>
+                <td>${aa[value]}</td>
 
 				
 			</tr>`;

@@ -20,9 +20,9 @@
 <table border='1' id="data">
 	<tr>
 		<th>ID</th>
-		<th>User Id</th>
+		<!-- <th>User Id</th>
 		<th>Title</th>
-		<th>completed</th>
+		<th>completed</th> -->
 	</tr>
 </table>
 
@@ -40,9 +40,9 @@
 	
    var mydiv=document.getElementById('data'); 	
    
-   function showdata(objarr){
+   function showdata(object){
 	
-		for(value of objarr){
+		for(value of object){
 			
 			var html=`<tr>
 				<td>${value.id}</td>
