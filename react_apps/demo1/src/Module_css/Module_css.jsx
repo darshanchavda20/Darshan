@@ -20,22 +20,33 @@ A from './mycss1.module.css';
 
 import React from 'react'
 
-//normal css 
-import   './css1.css';
-import  './css2.css';
+//normal css  no:-1
 
-// import module.css
-
-  import A from './mcss1.module.css';
-  import B from './mcss2.module.css';
+import './css2.css';
+import './css1.css';
 
 function Module_css() {
   return (
     <div>
-        <div className={A.bigblue}>Module css1</div>
-        <div className={B.bigblue}>Module css2</div>
+      <div className="smallblue">Module css1</div>
+      <div className="smallblue">Module css2</div>
     </div>
   )
 }
+
+
+// import module.css   no:-2
+
+// import A from './mcss1.module.css';
+// import B from './mcss2.module.css';
+
+// function Module_css() {
+//   return (
+//     <div>
+//       <div className={A.bigblue}>Module css1</div>
+//       <div className={B.bigblue}>Module css2</div>
+//     </div>
+//   )
+// }
 
 export default Module_css
